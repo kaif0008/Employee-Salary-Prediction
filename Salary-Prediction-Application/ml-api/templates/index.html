@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Salary Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="static/style.css" />
+</head>
+
+<body>
+    <div class="background">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="container animate__animated animate__fadeIn">
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <img src="{{ url_for('static', filename='images/salary.png') }}" alt="Salary Prediction Logo" class="logo-img">
+                        
+                    </div>
+                    <h1>Employee Salary Prediction</h1>
+                    <p class="subtitle">Fill in your details to get an estimated salary prediction</p>
+                </div>
+
+                <form id="salaryForm" class="card-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="education">
+                                <span class="label-text">Education Level</span>
+                            </label>
+                            <div class="input-container">
+                                <span class="input-icon">🎓</span>
+                                <select name="education" required>
+                                    <option value="" disabled selected>Select education</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Bachelor">Bachelor</option>
+                                    <option value="Master">Master</option>
+                                    <option value="PhD">PhD</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">
+                                <span class="label-text">Years of Experience</span>
+                            </label>
+                            <div class="input-container">
+                                <span class="input-icon">📅</span>
+                                <input type="number" name="experience" placeholder="e.g. 5" min="0" max="50" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">
+                                <span class="label-text">Location</span>
+                            </label>
+                            <div class="input-container">
+                                <span class="input-icon">📍</span>
+                                <select name="location" required>
+                                    <option value="" disabled selected>Select location</option>
+                                    <option value="Urban">Urban</option>
+                                    <option value="Suburban">Suburban</option>
+                                    <option value="Rural">Rural</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobTitle">
+                                <span class="label-text">Job Title</span>
+                            </label>
+                            <div class="input-container">
+                                <span class="input-icon">💼</span>
+                                <select name="jobTitle" required>
+                                    <option value="" disabled selected>Select job title</option>
+                                    <option value="Engineer">Engineer</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Director">Director</option>
+                                    <option value="Analyst">Analyst</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">
+                                <span class="label-text">Age</span>
+                            </label>
+                            <div class="input-container">
+                                <span class="input-icon">👤</span>
+                                <input type="number" name="age" placeholder="e.g. 28" min="18" max="70" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender">
+                                <span class="label-text">Gender</span>
+                            </label>
+                            <div class="input-container">
+                                <span class="input-icon">👫</span>
+                                <select name="gender" required>
+                                    <option value="" disabled selected>Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Predict Salary</span>
+                        <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </form>
+                <div id="result" class="result-container"></div>
+            </div>
+        </div>
+
+        <div class="about-sections">
+            <section id="about-project" class="about-section animate__animated">
+                <div class="about-container">
+                    <div class="about-content">
+                        <h2 class="section-title">About The Project</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-text">
+                            This Employee Salary Prediction tool uses machine learning algorithms to estimate potential
+                            salaries based on various factors like education, experience, location, and job title.
+                        </p>
+                        <p class="section-text">
+                            The model was trained on a comprehensive dataset of salary information across different
+                            industries and regions to provide accurate predictions.
+                        </p>
+                        <div class="tech-stack">
+                            <div class="tech-item">
+                                <i class="fas fa-brain"></i>
+                                <span>Machine Learning</span>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Data Analysis</span>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-code"></i>
+                                <span>Web Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2888/2888407.png" alt="Project Illustration">
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-me" class="about-section animate__animated">
+                <div class="about-container">
+                    <div class="about-image">
+                        
+                        <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Developer Illustration" />
+                        <div class="developer-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-laptop-code"></i>
+                                <span>Aspiring Java Developer</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-robot"></i>
+                                <span>AI Enthusiast</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-content">
+                        <h2 class="section-title">About The Developer</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-text">
+                            I’m a Computer Science and Engineering student at Teerthanker Mahaveer University (B.Tech,
+                            2027) aspiring to build a career as a Java Developer.
+                            I have strong skills in Java, along with C, C++, and familiarity with AI/ML concepts. I’m
+                            proficient in Git and GitHub for version control and collaboration.
+                            I’m passionate about developing innovative software solutions and continuously learning new
+                            technologies.
+                        </p>
+
+                        <!-- Socail links connect -->
+                        <div class="social-links">
+                            <a href="https://github.com/kaif0008" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/kaif-ansari-3b264b279/" target="_blank"
+                                class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://instagram.com/mr_kaif___008" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <!-- <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
+          <i class="fab fa-twitter"></i> -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <footer class="footer">
+    <div class="footer-content">
+        <p>© 2025 <span class="brand-name">Kaif Ansari</span>. All rights reserved.</p>
+    </div>
+</footer>
+
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
+
