@@ -1,5 +1,40 @@
 document.getElementById('salaryForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+
+    const age = parseInt(this.age.value) || 0;
+    const experience = parseInt(this.experience.value) || 0;
+
+    // Prevent duplicate popups
+    if (document.querySelector('.validation-overlay')) {
+        return;
+    }
+
+    // Add validation check before submission
+    if ((age - experience) < 18) {
+        const overlay = document.createElement('div');
+        overlay.className = 'validation-overlay';
+
+        const errorPopup = document.createElement('div');
+        errorPopup.className = 'validation-error animate__animated animate__fadeInUp';
+        errorPopup.innerHTML = `
+            <h3>Validation Error</h3>
+            <p>It looks like your experience exceeds your age eligibility.Please ensure your age minus experience is 18 or 18+.</p>
+            <button class="validation-error-btn">OK</button>
+        `;
+        overlay.appendChild(errorPopup);
+        document.body.appendChild(overlay);
+
+        errorPopup.querySelector('button').addEventListener('click', () => {
+            errorPopup.classList.remove('animate__fadeInUp');
+            errorPopup.classList.add('animate__fadeOut');
+            setTimeout(() => {
+                if (overlay.parentNode) {
+                    document.body.removeChild(overlay);
+                }
+            }, 500); // Match fadeOut duration
+        });
+        return;
+    }
     
     const submitBtn = this.querySelector('button[type="submit"]');
     submitBtn.innerHTML = '<span>Predicting...</span>';
